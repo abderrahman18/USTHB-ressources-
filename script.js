@@ -24,7 +24,7 @@
         timeout = setTimeout(later, wait)
       }
     },
-
+    
     throttle: (func, limit) => {
       let inThrottle
       return function () {
@@ -476,3 +476,6 @@
     initializeApp()
   }
 })()
+function showPDF() {
+    window.open('files/BDvues.pdf', '_blank');
+}
