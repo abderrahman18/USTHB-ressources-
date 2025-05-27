@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="search-resources-title">Search Resources - ACAD Ressources</title>
+    <meta name="description" content="Search and discover academic resources shared by students worldwide">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css">
+</head>
+<body>
+    <!-- Navigation (same as index.html) -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <i data-lucide="book-open" class="logo-icon"></i>
+                    <span class="logo-text">ACAD Ressources</span>
+                </a>
+                <div class="nav-links desktop-nav">
+                    <a href="index.html" class="nav-link">
+                        <i data-lucide="book-open"></i>
+                        <span data-translate="home">Home</span>
+                    </a>
+                    <a href="search.html" class="nav-link active">
+                        <i data-lucide="search"></i>
+                        <span data-translate="search">Search</span>
+                    </a>
+                    <a href="upload.html" class="nav-link">
+                        <i data-lucide="upload"></i>
+                        <span data-translate="upload">Upload</span>
+                    </a>
+                    <a href="dashboard.html" class="nav-link">
+                        <i data-lucide="user"></i>
+                        <span data-translate="dashboard">Dashboard</span>
+                    </a>
+                </div>
+                <div class="nav-actions">
+                    <div class="language-switcher">
+                        <button class="language-toggle" id="languageToggle" aria-label="Switch language">
+                            <i data-lucide="globe"></i>
+                            <span class="current-lang" id="currentLang">EN</span>
+                        </button>
+                        <div class="language-dropdown" id="languageDropdown">
+                            <button class="language-option" data-lang="en">
+                                <span class="flag">🇺🇸</span>
+                                <span>English</span>
+                            </button>
+                            <button class="language-option" data-lang="fr">
+                                <span class="flag">🇫🇷</span>
+                                <span>Français</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i data-lucide="sun" class="sun-icon"></i>
+                        <i data-lucide="moon" class="moon-icon"></i>
+                    </button>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-header">
+                <div class="mobile-logo">
+                    <i data-lucide="book-open"></i>
+                    <span>ACAD Ressources</span>
+                </div>
+                <button class="mobile-menu-close" id="mobileMenuClose">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="mobile-nav-links">
+                <a href="index.html" class="mobile-nav-link">
+                    <i data-lucide="book-open"></i>
+                    <span data-translate="home">Home</span>
+                </a>
+                <a href="search.html" class="mobile-nav-link active">
+                    <i data-lucide="search"></i>
+                    <span data-translate="search">Search</span>
+                </a>
+                <a href="upload.html" class="mobile-nav-link">
+                    <i data-lucide="upload"></i>
+                    <span data-translate="upload">Upload</span>
+                </a>
+                <a href="dashboard.html" class="mobile-nav-link">
+                    <i data-lucide="user"></i>
+                    <span data-translate="dashboard">Dashboard</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Search Header -->
+            <section class="search-header">
+                <h1 class="page-title animate-fade-in-up" data-translate="search-resources">Search Resources</h1>
+                <div class="search-container animate-fade-in-up stagger-1">
+                    <div class="search-box">
+                        <input type="text" data-translate-placeholder="search-placeholder" placeholder="Search by title, description, or tags..." class="search-input" id="mainSearchInput">
+                        <button class="search-btn" id="searchButton">
+                            <i data-lucide="search"></i>
+                            <span class="search-text" data-translate="search">Search</span>
+                            <span class="search-text-mobile" data-translate="go">Go</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search Results -->
+            <section class="search-results">
+                <div class="results-layout">
+                    <!-- Filters Sidebar (Desktop) -->
+                    <aside class="filters-sidebar animate-fade-in-left">
+                        <div class="filters-card">
+                            <div class="filters-header">
+                                <i data-lucide="sliders-horizontal"></i>
+                                <h3 data-translate="filters">Filters</h3>
+                            </div>
+                            <div class="filters-content">
+                                <div class="filter-group animate-fade-in-up">
+                                    <label class="filter-label" data-translate="subject">Subject</label>
+                                    <select class="filter-select" id="subjectFilter">
+                                        <option value="" data-translate="all-subjects">All subjects</option>
+                                        <option value="mathematics" data-translate="mathematics">Mathematics</option>
+                                        <option value="computer-science" data-translate="computer-science">Computer Science</option>
+                                        <option value="physics" data-translate="physics">Physics</option>
+                                        <option value="chemistry" data-translate="chemistry">Chemistry</option>
+                                        <option value="biology" data-translate="biology">Biology</option>
+                                        <option value="literature" data-translate="literature">Literature</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group animate-fade-in-up stagger-1">
+                                    <label class="filter-label" data-translate="file-type">File Type</label>
+                                    <select class="filter-select" id="typeFilter">
+                                        <option value="" data-translate="all-types">All types</option>
+                                        <option value="pdf">PDF</option>
+                                        <option value="docx">DOCX</option>
+                                        <option value="zip">ZIP</option>
+                                        <option value="ppt">PPT</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group animate-fade-in-up stagger-2">
+                                    <label class="filter-label" data-translate="education-level">Education Level</label>
+                                    <select class="filter-select" id="levelFilter">
+                                        <option value="" data-translate="all-levels">All levels</option>
+                                        <option value="high-school" data-translate="high-school">High School</option>
+                                        <option value="university" data-translate="university">University</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-outline filter-clear animate-fade-in-up stagger-3" data-translate="clear-filters">
+                                    <i data-lucide="x"></i>
+                                    Clear Filters
+                                </button>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Results Content -->
+                    <div class="results-content">
+                        <!-- Results Header -->
+                        <div class="results-header animate-fade-in-right">
+                            <p class="results-count"><span data-translate="showing">Showing</span> 4 <span data-translate="results">results</span></p>
+                            <div class="sort-container">
+                                <select class="sort-select" id="sortSelect">
+                                    <option value="newest" data-translate="newest-first">Newest First</option>
+                                    <option value="popular" data-translate="most-popular">Most Popular</option>
+                                    <option value="rating" data-translate="highest-rated">Highest Rated</option>
+                                    <option value="alphabetical" data-translate="alphabetical">Alphabetical</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Filters Button -->
+                        <button class="mobile-filters-btn animate-fade-in-up stagger-2" id="mobileFiltersBtn" data-translate="filters-sort">
+                            <i data-lucide="filter"></i>
+                            Filters & Sort
+                        </button>
+
+                        <!-- Results List -->
+                        <div class="results-list">
+                            <div class="result-card animate-fade-in-up">
+                                <div class="result-header">
+                                    <div class="result-badges">
+                                        <span class="badge badge-secondary">PDF</span>
+                                        <span class="badge badge-outline">University</span>
+                                        <span class="badge badge-outline">Mathematics</span>
+                                    </div>
+                                    <div class="result-rating">
+                                        <i data-lucide="star" class="star-filled"></i>
+                                        <span>4.8</span>
+                                    </div>
+                                </div>
+                                <div class="result-content">
+                                    <h3 class="result-title" data-translate="advanced-calculus-textbook">Advanced Calculus Textbook</h3>
+                                    <p class="result-description" data-translate="advanced-calculus-description">Comprehensive textbook covering differential and integral calculus</p>
+                                    <div class="result-tags">
+                                        <span class="tag" data-translate="calculus">Calculus</span>
+                                        <span class="tag" data-translate="textbook">Textbook</span>
+                                        <span class="tag" data-translate="2nd-year">2nd Year</span>
+                                    </div>
+                                    <div class="result-footer">
+                                        <div class="result-meta">
+                                            <span class="download-count">
+                                                <i data-lucide="download"></i>
+                                                1,250
+                                            </span>
+                                            <span>•</span>
+                                            <span>Uploaded Jan 15, 2024</span>
+                                        </div>
+                                        <a href="resource.html" class="btn btn-primary" data-translate="view-details">
+                                            <i data-lucide="download"></i>
+                                            View Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="result-card animate-fade-in-up stagger-1">
+                                <div class="result-header">
+                                    <div class="result-badges">
+                                        <span class="badge badge-secondary">PDF</span>
+                                        <span class="badge badge-outline">University</span>
+                                        <span class="badge badge-outline">Computer Science</span>
+                                    </div>
+                                    <div class="result-rating">
+                                        <i data-lucide="star" class="star-filled"></i>
+                                        <span>4.6</span>
+                                    </div>
+                                </div>
+                                <div class="result-content">
+                                    <h3 class="result-title" data-translate="java-exam">Java Programming Final Exam 2023</h3>
+                                    <p class="result-description" data-translate="java-exam-description">Previous year final examination with solutions</p>
+                                    <div class="result-tags">
+                                        <span class="tag" data-translate="java">Java</span>
+                                        <span class="tag" data-translate="exam">Exam</span>
+                                        <span class="tag" data-translate="programming">Programming</span>
+                                    </div>
+                                    <div class="result-footer">
+                                        <div class="result-meta">
+                                            <span class="download-count">
+                                                <i data-lucide="download"></i>
+                                                890
+                                            </span>
+                                            <span>•</span>
+                                            <span>Uploaded Jan 10, 2024</span>
+                                        </div>
+                                        <a href="resource.html" class="btn btn-primary" data-translate="view-details">
+                                            <i data-lucide="download"></i>
+                                            View Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="result-card animate-fade-in-up stagger-2">
+                                <div class="result-header">
+                                    <div class="result-badges">
+                                        <span class="badge badge-secondary">PDF</span>
+                                        <span class="badge badge-outline">University</span>
+                                        <span class="badge badge-outline">Chemistry</span>
+                                    </div>
+                                    <div class="result-rating">
+                                        <i data-lucide="star" class="star-filled"></i>
+                                        <span>4.7</span>
+                                    </div>
+                                </div>
+                                <div class="result-content">
+                                    <h3 class="result-title" data-translate="organic-chemistry-lab-manual">Organic Chemistry Lab Manual</h3>
+                                    <p class="result-description" data-translate="organic-chemistry-description">Complete laboratory manual with experiments and procedures</p>
+                                    <div class="result-tags">
+                                        <span class="tag" data-translate="chemistry">Chemistry</span>
+                                        <span class="tag" data-translate="lab">Lab</span>
+                                        <span class="tag" data-translate="organic">Organic</span>
+                                    </div>
+                                    <div class="result-footer">
+                                        <div class="result-meta">
+                                            <span class="download-count">
+                                                <i data-lucide="download"></i>
+                                                675
+                                            </span>
+                                            <span>•</span>
+                                            <span>Uploaded Jan 8, 2024</span>
+                                        </div>
+                                        <a href="resource.html" class="btn btn-primary" data-translate="view-details">
+                                            <i data-lucide="download"></i>
+                                            View Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="result-card animate-fade-in-up stagger-3">
+                                <div class="result-header">
+                                    <div class="result-badges">
+                                        <span class="badge badge-secondary">DOCX</span>
+                                        <span class="badge badge-outline">High School</span>
+                                        <span class="badge badge-outline">Physics</span>
+                                    </div>
+                                    <div class="result-rating">
+                                        <i data-lucide="star" class="star-filled"></i>
+                                        <span>4.5</span>
+                                    </div>
+                                </div>
+                                <div class="result-content">
+                                    <h3 class="result-title" data-translate="high-school-physics-notes">High School Physics Notes</h3>
+                                    <p class="result-description" data-translate="high-school-physics-description">Complete physics notes covering mechanics and thermodynamics</p>
+                                    <div class="result-tags">
+                                        <span class="tag" data-translate="physics">Physics</span>
+                                        <span class="tag" data-translate="notes">Notes</span>
+                                        <span class="tag" data-translate="mechanics">Mechanics</span>
+                                    </div>
+                                    <div class="result-footer">
+                                        <div class="result-meta">
+                                            <span class="download-count">
+                                                <i data-lucide="download"></i>
+                                                543
+                                            </span>
+                                            <span>•</span>
+                                            <span>Uploaded Jan 5, 2024</span>
+                                        </div>
+                                        <a href="resource.html" class="btn btn-primary" data-translate="view-details">
+                                            <i data-lucide="download"></i>
+                                            View Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Load More -->
+                        <div class="load-more animate-fade-in-up">
+                            <button class="btn btn-outline" data-translate="load-more">Load More Resources</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
