@@ -376,33 +376,153 @@
   }
 
   // Search functionality
-  function initSearch() {
-    function performSearch() {
-      const searchInput = document.querySelector(".search-input")
-      const query = searchInput ? searchInput.value.trim() : ""
-      if (query) {
-        window.location.href = "search.html?q=" + encodeURIComponent(query)
-      }
-    }
+function initSearch() {
+  // Get search query from URL if present
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchQuery = urlParams.get('q') || '';
+  
+  // Set the search input value if coming from another page
+  const searchInput = document.querySelector(".search-input");
+  if (searchInput && searchQuery) {
+    searchInput.value = decodeURIComponent(searchQuery);
+    performPageSearch(searchQuery);
+  }
 
-    const searchInput = document.querySelector(".search-input")
-    if (searchInput) {
-      searchInput.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-          performSearch()
-        }
-      })
-    }
-
-    const searchButton = document.querySelector(".search-btn")
-    if (searchButton) {
-      searchButton.addEventListener("click", (e) => {
-        e.preventDefault()
-        performSearch()
-      })
+  // Handle search form submission
+  function performSearch() {
+    const searchInput = document.querySelector(".search-input");
+    const query = searchInput ? searchInput.value.trim() : "";
+    if (query) {
+      window.location.href = "search.html?q=" + encodeURIComponent(query);
+    } else {
+      // If empty search, just reload the page to clear any existing search
+      window.location.href = "search.html";
     }
   }
 
+  // Set up event listeners
+  if (searchInput) {
+    searchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        performSearch();
+      }
+    });
+  }
+
+  const searchButton = document.querySelector(".search-btn");
+  if (searchButton) {
+    searchButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      performSearch();
+    });
+  }
+}
+
+// Function to actually filter and display results on the search page
+function performPageSearch(query) {
+  // Get all resource cards (you might need to adjust this selector)
+  const resourceCards = document.querySelectorAll('.result-card');
+  let visibleCount = 0;
+  const queryLower = query.toLowerCase();
+
+  resourceCards.forEach(card => {
+    // Get all searchable content from the card
+    const title = card.querySelector('.result-title')?.textContent?.toLowerCase() || '';
+    const description = card.querySelector('.result-description')?.textContent?.toLowerCase() || '';
+    const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
+    
+    // Check if this card matches the search query
+    const matches = title.includes(queryLower) || 
+                   description.includes(queryLower) || 
+                   tags.some(tag => tag.includes(queryLower));
+
+    // Show/hide card based on match
+    if (matches) {
+      card.style.display = '';
+      visibleCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  // Update results count
+  const resultsCount = document.querySelector('.results-count');
+  if (resultsCount) {
+    resultsCount.textContent = `Showing ${visibleCount} results`;
+  }
+
+  // Show "no results" message if needed
+  const noResultsMessage = document.querySelector('.no-results');
+  if (visibleCount === 0) {
+    if (!noResultsMessage) {
+      const resultsContainer = document.querySelector('.results-list');
+      if (resultsContainer) {
+        resultsContainer.insertAdjacentHTML('beforeend', `
+          <div class="no-results animate-fade-in-up">
+            <i data-lucide="search-x"></i>
+            <h3>No resources found for "${query}"</h3>
+            <p>Try different search terms or filters</p>
+          </div>
+        `);
+        lucide.createIcons();
+      }
+    }
+  } else if (noResultsMessage) {
+    noResultsMessage.remove();
+  }
+}
+document.querySelectorAll('.custom-select').forEach(select => {
+  const selected = select.querySelector('.selected');
+  const options = select.querySelector('.options');
+  const optionItems = select.querySelectorAll('.option');
+
+  // Toggle dropdown visibility on click
+  selected.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent click event from bubbling up
+    // Close all other dropdowns except this one
+    document.querySelectorAll('.custom-select').forEach(s => {
+      if (s !== select) s.classList.remove('open');
+    });
+    // Toggle current dropdown open/close
+    select.classList.toggle('open');
+  });
+
+  // When an option is clicked, update selected text and close dropdown
+  optionItems.forEach(option => {
+    option.addEventListener('click', () => {
+      selected.textContent = option.textContent;
+      // Optional: store the selected value as a data attribute on selected div
+      selected.dataset.value = option.dataset.value || option.textContent;
+      select.classList.remove('open');
+    });
+  });
+});
+
+// Close all dropdowns when clicking outside
+document.addEventListener('click', () => {
+  document.querySelectorAll('.custom-select.open').forEach(select => {
+    select.classList.remove('open');
+  });
+});
+
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  initSearch();
+  
+  // Also handle filter changes if you have filters
+  const filters = ['subjectFilter', 'typeFilter', 'levelFilter'];
+  filters.forEach(filterId => {
+    const filter = document.getElementById(filterId);
+    if (filter) {
+      filter.addEventListener('change', function() {
+        const searchInput = document.querySelector(".search-input");
+        const query = searchInput ? searchInput.value.trim() : "";
+        performPageSearch(query);
+      });
+    }
+  });
+});
   // Analytics (placeholder)
   function initAnalytics() {
     function trackEvent(category, action, label) {
@@ -532,6 +652,12 @@ document.querySelectorAll('.option').forEach(option => {
     options.style.display = 'none';
   });
 });
+// When opening mobile menu
+document.body.style.overflow = 'hidden';
+
+// When closing mobile menu
+document.body.style.overflow = '';
+
 // When opening mobile menu
 document.body.style.overflow = 'hidden';
 
