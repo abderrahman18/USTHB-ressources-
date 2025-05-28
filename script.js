@@ -532,3 +532,23 @@ document.querySelectorAll('.option').forEach(option => {
     options.style.display = 'none';
   });
 });
+// When opening mobile menu
+document.body.style.overflow = 'hidden';
+
+// When closing mobile menu
+document.body.style.overflow = '';
+  // Toggle dropdown
+const selected2 = document.querySelector('.selected2');
+const options2 = document.querySelector('.options2');
+
+selected2.addEventListener('click', () => {
+  options2.style.display = options2.style.display === 'block' ? 'none' : 'block';
+});
+
+// Set selected
+document.querySelectorAll('.option2').forEach(option2 => {
+  option2.addEventListener('click', () => {
+    selected2.textContent = option2.textContent;
+    options2.style.display = 'none';
+  });
+});

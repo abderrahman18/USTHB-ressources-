@@ -51,7 +51,7 @@
 }
 /* Navigation */
 .navbar {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -283,10 +283,8 @@
   right: -100%;
   width: 280px;
   height: 100vh;
-  background-color: var(--background);
-  border-left: 1px solid var(--border);
-  transition: var(--transition-slow);
-  z-index: 60;
+  overflow-y: auto; /* Enable scrolling */
+  z-index: 1000; /* Higher than overlay */
 }
 
 @media (min-width: 640px) {
@@ -893,13 +891,11 @@
 }
 
 body {
-    
   font-family: var(--font-family);
   background-color: var(--background);
   color: var(--foreground);
   line-height: 1.6;
   transition: var(--transition);
-  
 }
 
 /* Container */
@@ -907,7 +903,6 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--container-padding);
-  
 }
 
 @media (min-width: 640px) {
@@ -924,7 +919,7 @@ body {
 
 /* Navigation */
 .navbar {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -1155,7 +1150,7 @@ body {
   top: 0;
   right: -100%;
   width: 280px;
-  min-height: 100vh;
+  height: 100vh;
   background-color: var(--background);
   border-left: 1px solid var(--border);
   transition: var(--transition-slow);
@@ -1268,7 +1263,7 @@ body {
 /* Hero Section */
 .hero {
   position: relative;
-  
+  overflow: hidden;
   background: linear-gradient(135deg, var(--background) 0%, var(--background) 50%, var(--muted) 100%);
 }
 
@@ -1374,7 +1369,7 @@ body {
 .search-box {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 0.75rem;
 }
 
 @media (min-width: 640px) {
@@ -2243,17 +2238,21 @@ input:focus {
 .language-transition.complete {
   opacity: 1;
 }
-.card-container {
-    min-height: calc(100vh - 4rem); /* Account for navbar */
-    
-    display: flex;
-    justify-content: space-between; /* This will push children to opposite sides */
-    
-    width: 100%;
-   
-    margin: 0 auto; /* Center the container */
-    padding: 2rem;
-    gap: 2rem; /* Space between the two sections */
+
+
+@media (min-width: 1024px) {
+  .card-container {
+    flex-direction: row; /* Side by side on desktop */
+  }
+}
+
+
+
+@media (min-width: 1024px) {
+  .infodiv, .doc {
+    width: 48%;
+    max-width: 48%;
+  }
 }
 
 .infodiv {
@@ -2266,10 +2265,7 @@ input:focus {
     max-width: 48%; /* Prevents it from growing too large */
 }
 
-.infodiv, .doc {
-    flex: 1; /* Each takes up equal space; adjust if needed */
-    max-width: 50%;
-}
+
 
 
 
@@ -2291,7 +2287,7 @@ input:focus {
     border: 1px solid var(--border);
     border-radius: 0.75rem;
     padding: 1.5rem;
-    transition: var(--transition-slow);
+    
 }
 
 .inputs{
@@ -2381,16 +2377,80 @@ input:focus {
   color: white;
 }
 
+/* Make sure html and body can scroll */
 html, body {
- font-family: var(--font-family);
-  background-color: var(--background);
-  color: var(--foreground);
-  line-height: 1.6;
-  transition: var(--transition);
- 
+  height: auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
 }
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+
+
+
+
+/* Ensure content can grow vertically */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Allow inner content to grow */
+.infodiv, .doc {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* Prevent overflow cutoff */
+
+
+/* If using flex or grid on body or other containers, don't fix the height */
+body, .main, .wrapper {
+  display: block;
+}
+.selected2 {
+    width: 300px;
+  margin-top: 10px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
+
+.options2 {
+    border-radius: 0.5rem;
+  display: none;
+  position: absolute;
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: white;
+  z-index: 1;
+}
+
+.option2 {
+    border-radius: 0.5rem;
+  padding: 10px;
+  cursor: pointer;
+
+}
+
+.option2:hover {
+  background-color: #858585;
+  color: white;
+}
+.guidline{
+    padding-bottom: 20px;
+}
+.tocheck{
+    display: flex;
+  align-items: center;
+  gap: 10px; /* space between check and text */
+  margin-bottom: 10px;
+ 
+    
 }
