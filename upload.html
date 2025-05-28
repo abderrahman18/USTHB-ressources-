@@ -107,28 +107,90 @@
             </div>
         </div>
 
-        <main class="main-content">
-        <div class="container">
-            <!-- Search Header -->
-            <section class="search-header">
-                <h1 class="page-title animate-fade-in-up" data-translate="search-resources">Upload Resources</h1>
-                <div class="search-container animate-fade-in-up stagger-1">
-                    <div class="search-box">
-                        <input type="text" data-translate-placeholder="search-placeholder" placeholder="Search by title, description, or tags..." class="search-input" id="mainSearchInput">
-                        <button class="search-btn" id="searchButton">
-                            <i data-lucide="search"></i>
-                            <span class="search-text" data-translate="Upload">Upload</span>
-                            <span class="search-text-mobile" data-translate="Upload">Upload</span>
-                        </button>
+        
+    <div class="container">
+        <!-- Search Header -->
+        <section class="search-header">
+            <h1 class="page-title animate-fade-in-up" data-translate="search-resources">Upload Resources</h1>
+            <section class="info">
+                <div class="card-container">
+                    
+                    <!-- LEFT SIDE -->
+                    <div class="infodiv">
+                        <div class="doc-info">
+                            <h1>Title</h1>
+                            <input class="inputs" type="text" placeholder="Give your document a Title">
+                        </div>
+                        <div class="doc-info">
+                            <h1>Description</h1>
+                            <input class="inputs" type="text" placeholder="Give a description to your document">
+                        </div>
+                        <div class="doc-info">
+                            <h1>Tags</h1>
+                            <input class="inputs" type="text" placeholder="What should the Tags be?">
+                        </div>
+                        <div class="doc-info">
+                            <h1>Tags</h1>
+                            <input class="inputs" type="text" placeholder="What should the Tags be?">
+                        </div>
                     </div>
-                </div>
+
+                    <!-- RIGHT SIDE -->
+                    <div class="doc">
+                        <div class="doc-info">
+                            <div class="custom-select">
+                                <h1>Document Type</h1>
+                                <div class="selected">Choose a type of document</div>
+                                <div class="options">
+                                    <div class="option">PDF</div>
+                                    <div class="option">DOCX</div>
+                                    <div class="option">PNG</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="doc-info">
+                            <h1>Document</h1>
+                            <div id="drop-area">
+                                <p id="drop-text">Drag & drop a file here, or click to select</p>
+                                <input type="file" id="fileElem" hidden>
+                            </div>
+                        </div>
+                        <div class="doc-info">
+                            <h1>Faculté</h1>
+                            <div class="custom-select">
+                                
+                                <div class="selected">Choose a Field</div>
+                                <div class="options">
+                                    <div class="option">Informatique</div>
+                                    <div class="option">Math</div>
+                                    <div class="option">Biology</div>
+                                    <div class="option">GC</div>
+                                    <div class="option">GM</div>
+                                    <div class="option">ST</div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- End of card-container -->
             </section>
 
-            <!-- Search Results -->
-           
-                    <!-- Filters Sidebar (Desktop) -->
-                    
-                </main>
+            <!-- Upload Button -->
+            
+        </section>
+    </div>
+    <button class="search-btn" id="searchButton">
+                    <i data-lucide="search"></i>
+                    <span class="search-text" data-translate="Upload">Upload</span>
+                    <span class="search-text-mobile" data-translate="Upload">Upload</span>
+    </button>
+                
+            
+    
+    
+
+
 
         
 

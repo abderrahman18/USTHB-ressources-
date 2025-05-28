@@ -479,3 +479,56 @@
 function showPDF() {
     window.open('files/BDvues.pdf', '_blank');
 }
+const dropArea = document.getElementById("drop-area");
+  const fileInput = document.getElementById("fileElem");
+  const dropText = document.getElementById("drop-text");
+
+  let selectedFile = null;
+
+  // Click to open file dialog
+  dropArea.addEventListener("click", () => fileInput.click());
+
+  // Dragover styling
+  dropArea.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropArea.style.borderColor = "#007bff";
+  });
+
+  dropArea.addEventListener("dragleave", () => {
+    dropArea.style.borderColor = "#ccc";
+  });
+
+  // Drop handler
+  dropArea.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dropArea.style.borderColor = "#ccc";
+
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      selectedFile = files[0];
+      dropText.textContent = `📄 ${selectedFile.name}`;
+    }
+  });
+
+  // File dialog handler
+  fileInput.addEventListener("change", () => {
+    if (fileInput.files.length > 0) {
+      selectedFile = fileInput.files[0];
+      dropText.textContent = `📄 ${selectedFile.name}`;
+    }
+  });
+  // Toggle dropdown
+const selected = document.querySelector('.selected');
+const options = document.querySelector('.options');
+
+selected.addEventListener('click', () => {
+  options.style.display = options.style.display === 'block' ? 'none' : 'block';
+});
+
+// Set selected
+document.querySelectorAll('.option').forEach(option => {
+  option.addEventListener('click', () => {
+    selected.textContent = option.textContent;
+    options.style.display = 'none';
+  });
+});

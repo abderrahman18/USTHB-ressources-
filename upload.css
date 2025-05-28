@@ -893,17 +893,19 @@
 }
 
 body {
+    
   font-family: var(--font-family);
   background-color: var(--background);
   color: var(--foreground);
   line-height: 1.6;
   transition: var(--transition);
+  
 }
 
 /* Container */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
+  display: block;
+  height:100vh;
   padding: 0 var(--container-padding);
 }
 
@@ -1152,7 +1154,7 @@ body {
   top: 0;
   right: -100%;
   width: 280px;
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--background);
   border-left: 1px solid var(--border);
   transition: var(--transition-slow);
@@ -1265,7 +1267,7 @@ body {
 /* Hero Section */
 .hero {
   position: relative;
-  overflow: hidden;
+  
   background: linear-gradient(135deg, var(--background) 0%, var(--background) 50%, var(--muted) 100%);
 }
 
@@ -1371,7 +1373,7 @@ body {
 .search-box {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  justify-content: center;
 }
 
 @media (min-width: 640px) {
@@ -1718,7 +1720,7 @@ body {
   background-color: var(--card);
   border: 1px solid var(--border);
   border-radius: 0.5rem;
-  overflow: hidden;
+ 
   transition: var(--transition-slow);
 }
 
@@ -2239,4 +2241,151 @@ input:focus {
 
 .language-transition.complete {
   opacity: 1;
+}
+.card-container {
+    min-height: calc(100vh - 4rem); /* Account for navbar */
+    overflow-y: auto;
+    display: flex;
+    justify-content: space-between; /* This will push children to opposite sides */
+    align-items: flex-start; /* Align items at the top */
+    width: 100%;
+    max-width: 1200px; /* Or your preferred max width */
+    margin: 0 auto; /* Center the container */
+    padding: 2rem;
+    gap: 2rem; /* Space between the two sections */
+}
+
+.infodiv {
+    flex: 1; /* Takes up available space */
+    max-width: 48%; /* Prevents it from growing too large */
+}
+
+.doc {
+    flex: 1; /* Takes up available space */
+    max-width: 48%; /* Prevents it from growing too large */
+}
+
+.infodiv, .doc {
+    flex: 1; /* Each takes up equal space; adjust if needed */
+    max-width: 50%;
+}
+
+
+
+
+
+.doc-info{
+    text-align: left;
+    width:100%;
+    
+    font-size: 1.1rem;
+    flex-grow: 1;
+    transition: var(--transition-slow);
+   
+    border: gray;
+    box-shadow: 0 4px 8px rgba(49, 49, 49, 0.2);
+    margin-bottom: 20px;
+    justify-content: left;
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: var(--transition-slow);
+}
+
+.inputs{
+  width: 100%;
+  flex: 1;
+  height: 3rem;
+  padding: 0 1rem;
+  font-size: 0.9rem;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  color: var(--foreground);
+  transition: var(--transition);
+    
+    
+}
+.inputs:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(30, 41, 59, 0.1);
+}
+
+.inputs::placeholder {
+  color: var(--muted-foreground);
+}
+#drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    color: #666;
+    cursor: pointer;
+}
+.selctcard{
+    gap: 10px;
+    display: flex;
+    justify-content: flex-start;  /* Aligns items to the left */
+    align-items: flex-start;      /* Aligns items to the top-left */
+    border: 1px solid  #ccc;
+    align-items: baseline;
+    padding-left: 5px;
+    padding: 9px;
+    border-radius: 0.5rem;
+    font-weight: 100px;
+    margin-bottom: 20px;
+}
+.DOCTYPE{
+    padding: 5px;
+    border-radius: 0.4rem;
+    background-color: rgb(218, 218, 218);
+}
+.custom-select {
+  position: relative;
+  width: 200px;
+  font-family: sans-serif;
+}
+
+.selected {
+    width: 300px;
+  margin-top: 10px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
+
+.options {
+    border-radius: 0.5rem;
+  display: none;
+  position: absolute;
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: white;
+  z-index: 1;
+}
+
+.option {
+    border-radius: 0.5rem;
+  padding: 10px;
+  cursor: pointer;
+
+}
+
+.option:hover {
+  background-color: #858585;
+  color: white;
+}
+
+html, body {
+    
+    margin: 0;
+    padding: 0;
+    height: auto;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
