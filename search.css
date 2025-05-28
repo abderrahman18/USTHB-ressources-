@@ -428,14 +428,18 @@
   }
 }
 
+/* Filters Sidebar Base Styles */
 .filters-sidebar {
   width: 100%;
+  padding: 1rem;
+  max-width: 100%;
 }
 
 @media (min-width: 1024px) {
   .filters-sidebar {
     width: 280px;
     flex-shrink: 0;
+    padding: 1.5rem;
   }
 }
 
@@ -444,11 +448,12 @@
   border: 1px solid var(--border);
   border-radius: 0.75rem;
   padding: 1.5rem;
-  transition: var(--transition-slow);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .filters-card:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
 }
 
 .filters-header {
@@ -481,14 +486,17 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  position: relative;
 }
 
 .filter-label {
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 0.9rem;
+  font-weight: 600;
   color: var(--foreground);
+  letter-spacing: 0.02em;
 }
 
+/* Base Select Input Styles */
 .filter-select {
   width: 100%;
   padding: 0.5rem 1rem;
@@ -497,18 +505,177 @@
   border: 1px solid var(--border);
   border-radius: 0.5rem;
   color: var(--foreground);
-  transition: var(--transition);
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  cursor: pointer;
 }
 
-.filter-select:focus {
+.filter-select:focus-visible {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(30, 41, 59, 0.1);
+  box-shadow: 0 0 0 3px rgba(30, 41, 59, 0.2);
+  background-color: var(--background-light);
 }
 
+/* Custom Dropdown Styles */
+.custom-select-wrapper {
+  position: relative;
+}
+
+.custom-select-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.2s ease;
+  margin-top: 0.25rem;
+}
+
+.custom-select-wrapper:focus-within .custom-select-dropdown,
+.custom-select-wrapper:hover .custom-select-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-section {
+  padding: 0.25rem 0;
+}
+
+.dropdown-header {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--foreground-muted);
+  text-transform: uppercase;
+  background-color: var(--background-light);
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background: var(--background-light);
+}
+
+.dropdown-item.selected {
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.dropdown-icon {
+  font-size: 1.1em;
+  width: 1.5em;
+  text-align: center;
+}
+
+/* Search Input (hidden by default) */
+.search-container {
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Clear Button */
 .filter-clear {
   width: 100%;
   margin-top: 0.5rem;
+  cursor: pointer;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.filter-clear:hover,
+.filter-clear:focus-visible {
+  background-color: var(--primary-dark);
+  outline: none;
+}
+
+/* Animations */
+.animate-fade-in-left {
+  animation: fadeInLeft 0.5s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .results-content {
