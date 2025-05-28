@@ -904,9 +904,10 @@ body {
 
 /* Container */
 .container {
-  display: block;
-  height:100vh;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 0 var(--container-padding);
+  
 }
 
 @media (min-width: 640px) {
@@ -2244,12 +2245,12 @@ input:focus {
 }
 .card-container {
     min-height: calc(100vh - 4rem); /* Account for navbar */
-    overflow-y: auto;
+    
     display: flex;
     justify-content: space-between; /* This will push children to opposite sides */
-    align-items: flex-start; /* Align items at the top */
+    
     width: 100%;
-    max-width: 1200px; /* Or your preferred max width */
+   
     margin: 0 auto; /* Center the container */
     padding: 2rem;
     gap: 2rem; /* Space between the two sections */
@@ -2381,11 +2382,15 @@ input:focus {
 }
 
 html, body {
-    
+ font-family: var(--font-family);
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: 1.6;
+  transition: var(--transition);
+ 
+}
+* {
     margin: 0;
     padding: 0;
-    height: auto;
-    min-height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
+    box-sizing: border-box;
 }
