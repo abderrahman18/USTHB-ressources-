@@ -6,12 +6,13 @@ $user = "postgres";
 $password = "USTHB";
 
 $conn = pg_connect("
-    host=192.168.100.2 
+    host=192.168.100.2
     port=5432 
     dbname=postgres 
     user=postgres 
     password=USTHB
 ");
+
 if (!$conn) {
     die("Connection failed: " . pg_last_error());
 }

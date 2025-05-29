@@ -2,7 +2,7 @@
 $host = "192.168.100.2";
 $dbname = "postgres";
 $user = "postgres";
-$password = "USTHB; // <- use the one you chose when installing
+$password = "USTHB";
 
 $conn = pg_connect("
     host=192.168.100.2
@@ -19,5 +19,9 @@ if (!$conn) {
 $username = $_POST['username'] ?? '';
 echo "Hello, $username!";
 pg_close($conn);
-
 ?>
+
+
+
+
+
