@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USTHB Ressources - Academic Resource Hub</title>
     <meta name="description" content="Centralized hub for university and high school students to access academic materials">
-    <link rel="stylesheet" href="upload.css">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Updated Lucide CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.css">
@@ -106,103 +106,6 @@
                 </div>
             </div>
         </div>
-
-        
-    
-        <!-- Search Header -->
-        <div class="search-header">
-            <h1 class="page-title animate-fade-in-up" data-translate="search-resources">Upload Resources</h1>
-        </div>
-            
-        <div class="card-container">
-                    
-                    <!-- LEFT SIDE -->
-                    <div class="infodiv">
-                        <div class="doc-info">
-                            <h1>Title</h1>
-                            <input class="inputs" type="text" placeholder="Give your document a Title">
-                        </div>
-                        <div class="doc-info">
-                            <h1>Description</h1>
-                            <input class="inputs" type="text" placeholder="Give a description to your document">
-                        </div>
-                        <div class="doc-info">
-                            <h1>Tags</h1>
-                            <input class="inputs" type="text" placeholder="What should the Tags be?">
-                        </div>
-                        <div class="doc-info">
-                            <h1 class="guidline">Upload Guideline</h1>
-                            <h4 class="tocheck"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-4 w-4 text-green-500 mt-0.5 shrink-0"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
-                                Ensure you have permission to share the material</h4>
-                                <h4 class="tocheck"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-4 w-4 text-green-500 mt-0.5 shrink-0"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
-                                Use descriptive titles and detailed descriptions</h4>
-                                <h4 class="tocheck"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-4 w-4 text-green-500 mt-0.5 shrink-0"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
-                                Add relevant tags for better discoverability</h4>
-                                <h4 class="tocheck"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-4 w-4 text-green-500 mt-0.5 shrink-0"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
-                                Maximum file size: 50MB</h4>
-                                <h4 class="tocheck"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big h-4 w-4 text-green-500 mt-0.5 shrink-0"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
-                                Supported formats: PDF, DOCX, ZIP, PPT, TX</h4>
-                        </div>
-                    </div>
-
-                    <!-- RIGHT SIDE -->
-                    <div class="doc">
-                        <div class="doc-info">
-                            <div class="custom-select">
-                                <h1>Document Type</h1>
-                                <div class="selected">Choose a type of document</div>
-                                <div class="options">
-                                    <div class="option">PDF</div>
-                                    <div class="option">DOCX</div>
-                                    <div class="option">PNG</div>
-                                    <div class="option">PPT</div>
-                                    <div class="option">TXT</div>
-                                    <div class="option">ZIP</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="doc-info">
-                            <h1>Document</h1>
-                            <div id="drop-area">
-                                <p id="drop-text">Drag & drop a file here, or click to select</p>
-                                <input type="file" id="fileElem" hidden>
-                            </div>
-                        </div>
-                        <div class="doc-info">
-                            <h1>Faculté</h1>
-                            <div class="custom-select">
-                                <div class="selected2">Choose a Field</div>
-                                <div class="options2">
-                                    <div class="option2">Informatique</div>
-                                    <div class="option2">Math</div>
-                                    <div class="option2">Biology</div>
-                                    <div class="option2">GC</div>
-                                    <div class="option2">GM</div>
-                                    <div class="option2">ST</div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div> <!-- End of card-container -->
-            
-
-            <!-- Upload Button -->
-            
-        
-        </div>
-    <button class="search-btn" id="searchButton">
-                    <i data-lucide="search"></i>
-                    <span class="search-text" data-translate="Upload">Upload</span>
-                    <span class="search-text-mobile" data-translate="Upload">Upload</span>
-    </button>
-                
-            
-    
-    
-
-
 
         
 
